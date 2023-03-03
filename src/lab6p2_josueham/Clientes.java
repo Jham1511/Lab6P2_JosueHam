@@ -19,9 +19,11 @@ public class Clientes extends Usuario{
         super();
     }
 
-    public Clientes(String username, String password, int edad) {
-        super(username, password, edad);
+    public Clientes(int edad, String username, String password, String tipo) {
+        super(edad, username, password, tipo);
     }
+
+    
 
     public ArrayList<Cancion> getCancionesFav() {
         return cancionesFav;

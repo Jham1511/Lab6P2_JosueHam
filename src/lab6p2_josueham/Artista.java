@@ -19,10 +19,12 @@ public class Artista extends Usuario{
         super();
     }
 
-    public Artista(String nombre, String username, String password, int edad) {
-        super(username, password, edad);
+    public Artista(String nombre, int edad, String username, String password, String tipo) {
+        super(edad, username, password, tipo);
         this.nombre = nombre;
     }
+
+    
 
     public String getNombre() {
         return nombre;

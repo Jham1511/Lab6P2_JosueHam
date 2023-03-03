@@ -7,15 +7,19 @@ package lab6p2_josueham;
 public class Usuario {
 
     protected int edad;
-    protected String username, password;
+    protected String username, password,tipo;
 
     public Usuario() {
     }
 
-    public Usuario(String username, String password, int edad) {
+    public Usuario(int edad, String username, String password, String tipo) {
+        this.edad = edad;
         this.username = username;
         this.password = password;
+        this.tipo = tipo;
     }
+
+    
 
     public String getUsername() {
         return username;
@@ -39,6 +43,14 @@ public class Usuario {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
