@@ -39,11 +39,14 @@ public class Principal extends javax.swing.JFrame {
         rbtn_cliente = new javax.swing.JRadioButton();
         lb_tipo = new javax.swing.JLabel();
         BtnIr = new javax.swing.JButton();
+        lb_nomArt = new javax.swing.JLabel();
+        FieldNomArtista = new javax.swing.JTextField();
+        BtnGuardar = new javax.swing.JButton();
         lb_crearUsuario = new javax.swing.JLabel();
         lb_Username = new javax.swing.JLabel();
         FieldUsername = new javax.swing.JTextField();
         lb_Edad = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpinnerEdad = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         btnGroup_tipoUsuario = new javax.swing.ButtonGroup();
         PanelLogIn = new javax.swing.JPanel();
@@ -76,28 +79,48 @@ public class Principal extends javax.swing.JFrame {
         lb_tipo.setText("Tipo de Usuario");
 
         BtnIr.setText("->");
+        BtnIr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIrActionPerformed(evt);
+            }
+        });
+
+        lb_nomArt.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_nomArt.setForeground(new java.awt.Color(255, 255, 255));
+        lb_nomArt.setText("Nombre Artistico");
+
+        BtnGuardar.setText("Guardar Usuario");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnIr)
+                .addGap(192, 192, 192))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(FieldContra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_pass))
+                    .addComponent(lb_pass)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(FieldNomArtista, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lb_nomArt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(96, 96, 96)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnGuardar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rbt_artista)
                         .addGap(18, 18, 18)
                         .addComponent(rbtn_cliente))
                     .addComponent(lb_tipo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnIr)
-                .addGap(192, 192, 192))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +138,13 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(FieldContra, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(BtnIr)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lb_nomArt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FieldNomArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGuardar))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         lb_crearUsuario.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
@@ -131,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
         lb_Edad.setForeground(new java.awt.Color(255, 255, 255));
         lb_Edad.setText("Edad");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(12, 12, 100, 1));
+        SpinnerEdad.setModel(new javax.swing.SpinnerNumberModel(12, 12, 100, 1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/turn-back.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -158,7 +187,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_Edad)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SpinnerEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(169, 169, 169))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -177,7 +206,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lb_Edad))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(SpinnerEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(FieldUsername))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,13 +277,49 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void BtnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarseActionPerformed
-         abrir_registrarse();
+        abrir_registrarse();
     }//GEN-LAST:event_BtnRegistrarseActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       DiaRegistrarse.setVisible(false);
-       this.setVisible(true);
+        DiaRegistrarse.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtnIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIrActionPerformed
+        if (rbt_artista.isSelected()) {
+            lb_nomArt.setVisible(true);
+            FieldNomArtista.setVisible(true);
+        } else if (rbtn_cliente.isSelected()) {
+            lb_nomArt.setVisible(false);
+            FieldNomArtista.setVisible(false);
+        }
+    }//GEN-LAST:event_BtnIrActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        try {
+            String username = FieldUsername.getText();
+            String password = FieldContra.getText();
+            String strEdad = SpinnerEdad.getValue().toString();
+            int edad = Integer.parseInt(strEdad);
+            String tipo = "";
+            if (rbt_artista.isSelected()) {
+                tipo = "Artista";
+            } else if (rbtn_cliente.isSelected()) {
+                tipo = "Cliente";
+            }
+            
+            administrarUsuarios ap
+                    = new administrarUsuarios("./usuarios.txt");
+            ap.cargarArchivo();
+            Usuario u = new Usuario(edad, username, password, tipo);
+            ap.getListaUsuarios().add(u);
+            ap.escribirArchivo();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        
+        JOptionPane.showMessageDialog(this, "Usuario agregado exitosamente");
+    }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,31 +355,39 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-public void abrir_registrarse(){
-    this.setVisible(false);
-    DiaRegistrarse.pack();
-    DiaRegistrarse.setLocationRelativeTo(this);
-    DiaRegistrarse.setVisible(true);
-}
+
+    public void abrir_registrarse() {
+        this.setVisible(false);
+        DiaRegistrarse.pack();
+        DiaRegistrarse.setLocationRelativeTo(this);
+        FieldNomArtista.setVisible(false);
+        lb_nomArt.setVisible(false);
+        DiaRegistrarse.setVisible(true);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnGuardar;
     private javax.swing.JButton BtnIr;
     private javax.swing.JButton BtnRegistrarse;
     private javax.swing.JButton BtnSalir;
     private javax.swing.JButton BtnSignIn;
     private javax.swing.JDialog DiaRegistrarse;
     private javax.swing.JPasswordField FieldContra;
+    private javax.swing.JTextField FieldNomArtista;
     private javax.swing.JTextField FieldUsername;
     private javax.swing.JPanel PanelLogIn;
+    private javax.swing.JSpinner SpinnerEdad;
     private javax.swing.ButtonGroup btnGroup_tipoUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lb_Edad;
     private javax.swing.JLabel lb_Spotify;
     private javax.swing.JLabel lb_Username;
     private javax.swing.JLabel lb_crearUsuario;
     private javax.swing.JLabel lb_imagen;
+    private javax.swing.JLabel lb_nomArt;
     private javax.swing.JLabel lb_pass;
     private javax.swing.JLabel lb_tipo;
     private javax.swing.JRadioButton rbt_artista;
