@@ -5,9 +5,14 @@
 package lab6p2_josueham;
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Principal extends javax.swing.JFrame {
 
     administrarUsuarios ap = new administrarUsuarios("./usuarios.txt");
-
+    
     public Principal() throws IOException {
         initComponents();
         ap.cargarArchivo();
@@ -53,7 +58,10 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnGroup_tipoUsuario = new javax.swing.ButtonGroup();
         DiaArtistas = new javax.swing.JDialog();
+        jt_Artista = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         BtnCrearCancion = new javax.swing.JButton();
+        BtnCrearLanzamientos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         DiaSignIn = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
@@ -72,6 +80,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lb_tituloSong = new javax.swing.JLabel();
         FieldTituloSong = new javax.swing.JTextField();
+        DiaClientes = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_oyente = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_cancionesFav = new javax.swing.JList<>();
+        lb_cancionesFav = new javax.swing.JLabel();
+        lb_menuClientes = new javax.swing.JLabel();
+        imagenAudifonos = new javax.swing.JLabel();
         PanelLogIn = new javax.swing.JPanel();
         BtnRegistrarse = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
@@ -237,13 +255,25 @@ public class Principal extends javax.swing.JFrame {
 
         DiaArtistas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jt_Artista.setViewportView(jTree1);
+
+        DiaArtistas.getContentPane().add(jt_Artista, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, 280));
+
         BtnCrearCancion.setText("Crear Cancion");
         BtnCrearCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCrearCancionActionPerformed(evt);
             }
         });
-        DiaArtistas.getContentPane().add(BtnCrearCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+        DiaArtistas.getContentPane().add(BtnCrearCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 140, -1));
+
+        BtnCrearLanzamientos.setText("Crear Lanzamiento ");
+        BtnCrearLanzamientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCrearLanzamientosActionPerformed(evt);
+            }
+        });
+        DiaArtistas.getContentPane().add(BtnCrearLanzamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 140, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/istockphoto-1199243596-170667a.jpg"))); // NOI18N
         DiaArtistas.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -410,6 +440,37 @@ public class Principal extends javax.swing.JFrame {
 
         DiaCrearCanciones.getContentPane().add(panelCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        DiaClientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        jLabel5.setText("PlayList del Usuario");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+
+        jScrollPane1.setViewportView(jt_oyente);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 190, -1));
+
+        jl_cancionesFav.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jl_cancionesFav);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 140, 360));
+
+        lb_cancionesFav.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_cancionesFav.setText("Canciones Favoritas");
+        jPanel5.add(lb_cancionesFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 20));
+
+        lb_menuClientes.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_menuClientes.setForeground(new java.awt.Color(255, 255, 255));
+        lb_menuClientes.setText("Menu de Oyentes");
+        jPanel5.add(lb_menuClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+
+        imagenAudifonos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/image-gallery-3.jpg"))); // NOI18N
+        jPanel5.add(imagenAudifonos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        DiaClientes.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelLogIn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -516,7 +577,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.getMessage();
         }
-
+        
         JOptionPane.showMessageDialog(this, "Usuario agregado exitosamente");
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
@@ -534,27 +595,14 @@ public class Principal extends javax.swing.JFrame {
         String pass = FieldContraLogIn.getText();
         boolean type = false;
         
-        for (Usuario  u: ap.getListaUsuarios()) {
-            if (u.getUsername().equals(username) || (u.getPassword() == pass)) {
+        for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
+            if (ap.getListaUsuarios().get(i).getTipo().equals("Artista") && username.equals(ap.getListaUsuarios().get(i).getUsername())) {
                 abrir_artistas();
+            } else if ("Cliente".equals(ap.getListaUsuarios().get(i).getTipo()) && username.equals(ap.getListaUsuarios().get(i).getUsername())){
+                abrir_oyentes();
             }
         }
-//        for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
-//            if (ap.getListaUsuarios().get(i).getTipo().equals("Artista")) {
-//                type = true;
-//            } else {
-//                type = false;
-//            }
-//            
-//            if (ap.getListaUsuarios().get(i).toString().equals(username)) {
-//                if (type == true) {
-//                    abrir_artistas();
-//                }
-//            } else if (type == false){
-//                abrir_oyentes();
-//                System.out.println("cagada");
-//            }
-//        }
+//        
 
     }//GEN-LAST:event_BtnIngresarMouseClicked
 
@@ -569,6 +617,10 @@ public class Principal extends javax.swing.JFrame {
     private void FieldDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FieldDuracionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FieldDuracionActionPerformed
+
+    private void BtnCrearLanzamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearLanzamientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCrearLanzamientosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -634,6 +686,9 @@ public class Principal extends javax.swing.JFrame {
     
     public void abrir_oyentes(){
         this.setVisible(false);
+        DiaClientes.pack();
+        DiaClientes.setLocationRelativeTo(this);
+        DiaClientes.setVisible(true);
         }
     
     public void abrir_crearSongs(){
@@ -642,8 +697,21 @@ public class Principal extends javax.swing.JFrame {
        DiaCrearCanciones.setLocationRelativeTo(this);
        DiaCrearCanciones.setVisible(true);
     }
+    
+    public DefaultListModel llenarLista (){
+        DefaultListModel modelito = new DefaultListModel();
+        
+        for (Usuario u : ap.getListaUsuarios()) {
+            if (u instanceof Cliente) {
+               // modelito.addElement(ap.getListaUsuarios().get);
+            }
+        }
+        
+        return modelito;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCrearCancion;
+    private javax.swing.JButton BtnCrearLanzamientos;
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JButton BtnIngresar;
     private javax.swing.JButton BtnIr;
@@ -652,6 +720,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnSignIn;
     private javax.swing.JButton BtnTurn;
     private javax.swing.JDialog DiaArtistas;
+    private javax.swing.JDialog DiaClientes;
     private javax.swing.JDialog DiaCrearCanciones;
     private javax.swing.JDialog DiaRegistrarse;
     private javax.swing.JDialog DiaSignIn;
@@ -665,20 +734,31 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelLogIn;
     private javax.swing.JSpinner SpinnerEdad;
     private javax.swing.ButtonGroup btnGroup_tipoUsuario;
+    private javax.swing.JLabel imagenAudifonos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTree jTree1;
+    private javax.swing.JList<String> jl_cancionesFav;
+    private javax.swing.JScrollPane jt_Artista;
+    private javax.swing.JTree jt_oyente;
     private javax.swing.JLabel lb_Edad;
     private javax.swing.JLabel lb_Spotify;
     private javax.swing.JLabel lb_Username;
+    private javax.swing.JLabel lb_cancionesFav;
     private javax.swing.JLabel lb_crearUsuario;
     private javax.swing.JLabel lb_imagen;
     private javax.swing.JLabel lb_iniciosesion;
+    private javax.swing.JLabel lb_menuClientes;
     private javax.swing.JLabel lb_nomArt;
     private javax.swing.JLabel lb_pass;
     private javax.swing.JLabel lb_passwordLogIn;
