@@ -57,25 +57,6 @@ public class administrarUsuarios {
         return "administrarUsuarios{" + "listaUsuarios=" + listaUsuarios + '}';
     }
 
-    public void cargarArchivo() {
-        Scanner sc = null;
-        if (archivo.exists()) {
-            try {
-                sc = new Scanner(archivo);
-                sc.useDelimiter("|");
-                while (sc.hasNext()) {
-                    listaUsuarios.add(new Usuario(sc.nextInt(),
-                            sc.next(),
-                            sc.next(),
-                            sc.next()
-                    )
-                    );
-                }
-            } catch (Exception ex) {
-            }
-            sc.close();
-        }//FIN IF
-    }
 
     public void escribirArchivo() throws IOException {
         FileWriter fw = null;
@@ -96,16 +77,21 @@ public class administrarUsuarios {
         fw.close();
     }
 
-    public void cargarArchivo1() throws FileNotFoundException, IOException {
+    public void cargarArchivo() throws FileNotFoundException, IOException {
 
         BufferedReader br
                 = new BufferedReader(new FileReader("./usuarios.txt"));
 
         String st;
         while ((st = br.readLine()) != null) {
-            String[] puta = st.split("\\|");
-            int edad = Integer.parseInt(puta[2]);
-            listaUsuarios.add(new Usuario(edad, puta[0], puta[1], puta[3]));
+            String[] tokens = st.split("\\|");
+            int edad = Integer.parseInt(tokens[2]);
+            for (int i = 0; i < tokens.length; i++) {
+                System.out.println("[" + tokens[i] + "]");
+            }
+            listaUsuarios.add(new Usuario(edad, tokens[0], tokens[1], tokens[3]));
+            
+            
             System.out.println(st);
         }
 

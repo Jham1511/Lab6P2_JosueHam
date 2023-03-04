@@ -20,7 +20,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() throws IOException {
         initComponents();
-        ap.cargarArchivo1();
+        ap.cargarArchivo();
         this.setLocationRelativeTo(null);
     }
 
@@ -37,7 +37,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lb_pass = new javax.swing.JLabel();
-        FieldContra = new javax.swing.JPasswordField();
         rbt_artista = new javax.swing.JRadioButton();
         rbtn_cliente = new javax.swing.JRadioButton();
         lb_tipo = new javax.swing.JLabel();
@@ -45,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         lb_nomArt = new javax.swing.JLabel();
         FieldNomArtista = new javax.swing.JTextField();
         BtnGuardar = new javax.swing.JButton();
+        FieldContra = new javax.swing.JTextField();
         lb_crearUsuario = new javax.swing.JLabel();
         lb_Username = new javax.swing.JLabel();
         FieldUsername = new javax.swing.JTextField();
@@ -64,6 +64,14 @@ public class Principal extends javax.swing.JFrame {
         BtnTurn = new javax.swing.JButton();
         BtnIngresar = new javax.swing.JButton();
         FieldContraLogIn = new javax.swing.JTextField();
+        DiaCrearCanciones = new javax.swing.JDialog();
+        panelCanciones = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        FieldDuracion = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        lb_tituloSong = new javax.swing.JLabel();
+        FieldTituloSong = new javax.swing.JTextField();
         PanelLogIn = new javax.swing.JPanel();
         BtnRegistrarse = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
@@ -120,12 +128,12 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FieldContra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_pass)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(FieldNomArtista, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lb_nomArt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(96, 96, 96)
+                        .addComponent(lb_nomArt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(FieldContra, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnGuardar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -133,7 +141,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(rbtn_cliente))
                     .addComponent(lb_tipo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +238,11 @@ public class Principal extends javax.swing.JFrame {
         DiaArtistas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtnCrearCancion.setText("Crear Cancion");
+        BtnCrearCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCrearCancionActionPerformed(evt);
+            }
+        });
         DiaArtistas.getContentPane().add(BtnCrearCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/istockphoto-1199243596-170667a.jpg"))); // NOI18N
@@ -326,6 +339,76 @@ public class Principal extends javax.swing.JFrame {
             DiaSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        DiaCrearCanciones.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelCanciones.setBackground(new java.awt.Color(0, 153, 102));
+
+        jLabel3.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        jLabel3.setText("Duracion");
+
+        FieldDuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FieldDuracionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/musica.png"))); // NOI18N
+        jLabel2.setText("Crear Canciones");
+        jLabel2.setOpaque(true);
+
+        lb_tituloSong.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_tituloSong.setText("Titulo de la cancion");
+
+        javax.swing.GroupLayout panelCancionesLayout = new javax.swing.GroupLayout(panelCanciones);
+        panelCanciones.setLayout(panelCancionesLayout);
+        panelCancionesLayout.setHorizontalGroup(
+            panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelCancionesLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_tituloSong)
+                    .addComponent(jLabel2)
+                    .addComponent(FieldTituloSong, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(369, Short.MAX_VALUE))
+        );
+        panelCancionesLayout.setVerticalGroup(
+            panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCancionesLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addGap(52, 52, 52)
+                .addComponent(lb_tituloSong)
+                .addGap(18, 18, 18)
+                .addComponent(FieldTituloSong, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        DiaCrearCanciones.getContentPane().add(panelCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -449,18 +532,43 @@ public class Principal extends javax.swing.JFrame {
     private void BtnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnIngresarMouseClicked
         String username = FieldContraLogIn.getText();
         String pass = FieldContraLogIn.getText();
-        for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
-            if (username.equals(ap.getListaUsuarios().get(i).getUsername()) && pass.equals(ap.getListaUsuarios().get(i).getPassword())) {
+        boolean type = false;
+        
+        for (Usuario  u: ap.getListaUsuarios()) {
+            if (u.getUsername().equals(username) || (u.getPassword() == pass)) {
                 abrir_artistas();
-
             }
         }
+//        for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
+//            if (ap.getListaUsuarios().get(i).getTipo().equals("Artista")) {
+//                type = true;
+//            } else {
+//                type = false;
+//            }
+//            
+//            if (ap.getListaUsuarios().get(i).toString().equals(username)) {
+//                if (type == true) {
+//                    abrir_artistas();
+//                }
+//            } else if (type == false){
+//                abrir_oyentes();
+//                System.out.println("cagada");
+//            }
+//        }
 
     }//GEN-LAST:event_BtnIngresarMouseClicked
 
     private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnIngresarActionPerformed
+
+    private void BtnCrearCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearCancionActionPerformed
+        abrir_crearSongs();
+    }//GEN-LAST:event_BtnCrearCancionActionPerformed
+
+    private void FieldDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FieldDuracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FieldDuracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -523,6 +631,17 @@ public class Principal extends javax.swing.JFrame {
         DiaArtistas.setLocationRelativeTo(this);
         DiaArtistas.setVisible(true);
     }
+    
+    public void abrir_oyentes(){
+        this.setVisible(false);
+        }
+    
+    public void abrir_crearSongs(){
+       DiaArtistas.setVisible(false);
+       DiaCrearCanciones.pack();
+       DiaCrearCanciones.setLocationRelativeTo(this);
+       DiaCrearCanciones.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCrearCancion;
     private javax.swing.JButton BtnGuardar;
@@ -533,11 +652,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnSignIn;
     private javax.swing.JButton BtnTurn;
     private javax.swing.JDialog DiaArtistas;
+    private javax.swing.JDialog DiaCrearCanciones;
     private javax.swing.JDialog DiaRegistrarse;
     private javax.swing.JDialog DiaSignIn;
-    private javax.swing.JPasswordField FieldContra;
+    private javax.swing.JTextField FieldContra;
     private javax.swing.JTextField FieldContraLogIn;
+    private javax.swing.JTextField FieldDuracion;
     private javax.swing.JTextField FieldNomArtista;
+    private javax.swing.JTextField FieldTituloSong;
     private javax.swing.JTextField FieldUserLogIn;
     private javax.swing.JTextField FieldUsername;
     private javax.swing.JPanel PanelLogIn;
@@ -545,9 +667,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroup_tipoUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lb_Edad;
     private javax.swing.JLabel lb_Spotify;
     private javax.swing.JLabel lb_Username;
@@ -558,7 +683,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lb_pass;
     private javax.swing.JLabel lb_passwordLogIn;
     private javax.swing.JLabel lb_tipo;
+    private javax.swing.JLabel lb_tituloSong;
     private javax.swing.JLabel lb_userLogIn;
+    private javax.swing.JPanel panelCanciones;
     private javax.swing.JRadioButton rbt_artista;
     private javax.swing.JRadioButton rbtn_cliente;
     // End of variables declaration//GEN-END:variables

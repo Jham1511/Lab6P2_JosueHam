@@ -15,25 +15,25 @@ import java.util.ArrayList;
 
 /**
  *
- * @author skxka
+ * @author SKX Kafei
  */
-public class administrarCanciones {
-    private ArrayList<Cancion> listaCanciones = new ArrayList<>();
-    private File archivo = null;
-    
-    public administrarCanciones(String path) {
-        archivo = new File(path);
+public class administrarPlaylists {
+    private ArrayList<Playlist> listaPlaylists = new ArrayList<>();
+    File archivo = null;
+
+    public administrarPlaylists(String path) {
+        archivo=new File(path);
     }
 
-    public administrarCanciones() {
+    public administrarPlaylists() {
     }
 
-    public ArrayList<Cancion> getListaCanciones() {
-        return listaCanciones;
+    public ArrayList<Playlist> getListaPlaylists() {
+        return listaPlaylists;
     }
 
-    public void setListaCanciones(ArrayList<Cancion> listaCanciones) {
-        this.listaCanciones = listaCanciones;
+    public void setListaPlaylists(ArrayList<Playlist> listaPlaylists) {
+        this.listaPlaylists = listaPlaylists;
     }
 
     public File getArchivo() {
@@ -43,22 +43,17 @@ public class administrarCanciones {
     public void setArchivo(File archivo) {
         this.archivo = archivo;
     }
-
-    @Override
-    public String toString() {
-        return "administrarCanciones{" + "listaCanciones=" + listaCanciones + ", archivo=" + archivo + '}';
-    }
     
-    public void escribirArchivo() throws IOException {
+     public void escribirArchivo() throws IOException {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
-            for (Cancion t : listaCanciones) {
-                bw.write(t.getTitulo()+ "|");
-                bw.write(t.getDuracion()+ "|");
-                bw.write(t.getReferencia()+ "\n");
+            for (Playlist t : listaPlaylists) {
+                bw.write(t.getNombre()+ "|");
+                bw.write(t.getCreador()+ "|");
+                bw.write(t.getConteoLikes()+ "\n");
             }
             bw.flush();
         } catch (Exception ex) {
@@ -74,8 +69,8 @@ public class administrarCanciones {
 
         String st;
         while ((st = br.readLine()) != null) {
-            String[] caca = st.split("\\|");
-            listaCanciones.add(new Cancion(caca[0], caca[1], caca[2]));
+            String[] tokens = st.split("\\|");
+            listaPlaylists.add(new Playlist(tokens[0], tokens[1], Integer.parseInt(tokens[2])));
         }
 
     }

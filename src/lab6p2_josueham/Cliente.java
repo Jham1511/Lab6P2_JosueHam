@@ -10,16 +10,16 @@ import java.util.ArrayList;
  *
  * @author skxka
  */
-public class Clientes extends Usuario{
+public class Cliente extends Usuario{
     private ArrayList<Cancion> cancionesFav = new ArrayList<>();
     private ArrayList<Playlist> playlistsCreadas = new ArrayList<>();
     private ArrayList<Playlist> playlistsFav = new ArrayList<>();
 
-    public Clientes() {
+    public Cliente() {
         super();
     }
 
-    public Clientes(int edad, String username, String password, String tipo) {
+    public Cliente(int edad, String username, String password, String tipo) {
         super(edad, username, password, tipo);
     }
 
