@@ -5,6 +5,9 @@
 package lab6p2_josueham;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +16,11 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
-    public Principal() {
+    administrarUsuarios ap = new administrarUsuarios("./usuarios.txt");
+
+    public Principal() throws IOException {
         initComponents();
+        ap.cargarArchivo1();
         this.setLocationRelativeTo(null);
     }
 
@@ -49,6 +52,18 @@ public class Principal extends javax.swing.JFrame {
         SpinnerEdad = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         btnGroup_tipoUsuario = new javax.swing.ButtonGroup();
+        DiaArtistas = new javax.swing.JDialog();
+        BtnCrearCancion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        DiaSignIn = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        lb_iniciosesion = new javax.swing.JLabel();
+        lb_userLogIn = new javax.swing.JLabel();
+        FieldUserLogIn = new javax.swing.JTextField();
+        lb_passwordLogIn = new javax.swing.JLabel();
+        BtnTurn = new javax.swing.JButton();
+        BtnIngresar = new javax.swing.JButton();
+        FieldContraLogIn = new javax.swing.JTextField();
         PanelLogIn = new javax.swing.JPanel();
         BtnRegistrarse = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
@@ -65,8 +80,6 @@ public class Principal extends javax.swing.JFrame {
         lb_pass.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         lb_pass.setForeground(new java.awt.Color(255, 255, 255));
         lb_pass.setText("Contraseña");
-
-        FieldContra.setText("jPasswordField1");
 
         btnGroup_tipoUsuario.add(rbt_artista);
         rbt_artista.setText("Artista");
@@ -214,6 +227,106 @@ public class Principal extends javax.swing.JFrame {
 
         DiaRegistrarse.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        DiaArtistas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnCrearCancion.setText("Crear Cancion");
+        DiaArtistas.getContentPane().add(BtnCrearCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/istockphoto-1199243596-170667a.jpg"))); // NOI18N
+        DiaArtistas.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 255));
+
+        lb_iniciosesion.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_iniciosesion.setForeground(new java.awt.Color(255, 255, 255));
+        lb_iniciosesion.setText("Inicio de Sesion");
+
+        lb_userLogIn.setFont(new java.awt.Font("Cooper Black", 1, 14)); // NOI18N
+        lb_userLogIn.setForeground(new java.awt.Color(255, 255, 255));
+        lb_userLogIn.setText("Username");
+
+        FieldUserLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lb_passwordLogIn.setFont(new java.awt.Font("Cooper Black", 1, 14)); // NOI18N
+        lb_passwordLogIn.setForeground(new java.awt.Color(255, 255, 255));
+        lb_passwordLogIn.setText("Contraseña");
+
+        BtnTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_josueham/turn-back.png"))); // NOI18N
+        BtnTurn.setBorder(null);
+        BtnTurn.setOpaque(false);
+        BtnTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTurnActionPerformed(evt);
+            }
+        });
+
+        BtnIngresar.setBackground(new java.awt.Color(0, 0, 0));
+        BtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnIngresar.setText("Ingresar");
+        BtnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnIngresarMouseClicked(evt);
+            }
+        });
+        BtnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIngresarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnTurn))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(BtnIngresar))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lb_passwordLogIn)
+                            .addComponent(lb_userLogIn)
+                            .addComponent(lb_iniciosesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FieldUserLogIn)
+                            .addComponent(FieldContraLogIn))))
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(BtnTurn)
+                .addGap(18, 18, 18)
+                .addComponent(lb_iniciosesion)
+                .addGap(52, 52, 52)
+                .addComponent(lb_userLogIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(FieldUserLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(lb_passwordLogIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(FieldContraLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(BtnIngresar)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout DiaSignInLayout = new javax.swing.GroupLayout(DiaSignIn.getContentPane());
+        DiaSignIn.getContentPane().setLayout(DiaSignInLayout);
+        DiaSignInLayout.setHorizontalGroup(
+            DiaSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        DiaSignInLayout.setVerticalGroup(
+            DiaSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelLogIn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -244,6 +357,11 @@ public class Principal extends javax.swing.JFrame {
         BtnSignIn.setForeground(new java.awt.Color(255, 255, 255));
         BtnSignIn.setText("Iniciar Sesión");
         BtnSignIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSignInActionPerformed(evt);
+            }
+        });
         PanelLogIn.add(BtnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 90));
 
         lb_Spotify.setFont(new java.awt.Font("Cooper Black", 1, 24)); // NOI18N
@@ -307,19 +425,42 @@ public class Principal extends javax.swing.JFrame {
             } else if (rbtn_cliente.isSelected()) {
                 tipo = "Cliente";
             }
-            
-            administrarUsuarios ap
-                    = new administrarUsuarios("./usuarios.txt");
-            ap.cargarArchivo();
+
             Usuario u = new Usuario(edad, username, password, tipo);
             ap.getListaUsuarios().add(u);
             ap.escribirArchivo();
+            ap.getListaUsuarios().add(new Usuario(edad, username, password, tipo));
         } catch (Exception e) {
             e.getMessage();
         }
-        
+
         JOptionPane.showMessageDialog(this, "Usuario agregado exitosamente");
     }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSignInActionPerformed
+        abrir_SignIn();
+    }//GEN-LAST:event_BtnSignInActionPerformed
+
+    private void BtnTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTurnActionPerformed
+        this.setVisible(true);
+        DiaSignIn.setVisible(false);
+    }//GEN-LAST:event_BtnTurnActionPerformed
+
+    private void BtnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnIngresarMouseClicked
+        String username = FieldContraLogIn.getText();
+        String pass = FieldContraLogIn.getText();
+        for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
+            if (username.equals(ap.getListaUsuarios().get(i).getUsername()) && pass.equals(ap.getListaUsuarios().get(i).getPassword())) {
+                abrir_artistas();
+
+            }
+        }
+
+    }//GEN-LAST:event_BtnIngresarMouseClicked
+
+    private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,7 +492,11 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -365,31 +510,55 @@ public class Principal extends javax.swing.JFrame {
         DiaRegistrarse.setVisible(true);
     }
 
+    public void abrir_SignIn() {
+        this.setVisible(false);
+        DiaSignIn.pack();
+        DiaSignIn.setLocationRelativeTo(this);
+        DiaSignIn.setVisible(true);
+    }
 
+    public void abrir_artistas() {
+        this.setVisible(false);
+        DiaArtistas.pack();
+        DiaArtistas.setLocationRelativeTo(this);
+        DiaArtistas.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCrearCancion;
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnIngresar;
     private javax.swing.JButton BtnIr;
     private javax.swing.JButton BtnRegistrarse;
     private javax.swing.JButton BtnSalir;
     private javax.swing.JButton BtnSignIn;
+    private javax.swing.JButton BtnTurn;
+    private javax.swing.JDialog DiaArtistas;
     private javax.swing.JDialog DiaRegistrarse;
+    private javax.swing.JDialog DiaSignIn;
     private javax.swing.JPasswordField FieldContra;
+    private javax.swing.JTextField FieldContraLogIn;
     private javax.swing.JTextField FieldNomArtista;
+    private javax.swing.JTextField FieldUserLogIn;
     private javax.swing.JTextField FieldUsername;
     private javax.swing.JPanel PanelLogIn;
     private javax.swing.JSpinner SpinnerEdad;
     private javax.swing.ButtonGroup btnGroup_tipoUsuario;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lb_Edad;
     private javax.swing.JLabel lb_Spotify;
     private javax.swing.JLabel lb_Username;
     private javax.swing.JLabel lb_crearUsuario;
     private javax.swing.JLabel lb_imagen;
+    private javax.swing.JLabel lb_iniciosesion;
     private javax.swing.JLabel lb_nomArt;
     private javax.swing.JLabel lb_pass;
+    private javax.swing.JLabel lb_passwordLogIn;
     private javax.swing.JLabel lb_tipo;
+    private javax.swing.JLabel lb_userLogIn;
     private javax.swing.JRadioButton rbt_artista;
     private javax.swing.JRadioButton rbtn_cliente;
     // End of variables declaration//GEN-END:variables

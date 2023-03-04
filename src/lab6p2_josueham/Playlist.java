@@ -11,17 +11,19 @@ import java.util.ArrayList;
  * @author skxka
  */
 public class Playlist {
-    private String nombre;
+    private String nombre, creador;
     private int conteoLikes;
     private ArrayList<Cancion> songs = new ArrayList<>();
 
     public Playlist() {
     }
 
-    public Playlist(String nombre, int conteoLikes) {
+    public Playlist(String nombre, String creador, int conteoLikes) {
         this.nombre = nombre;
+        this.creador = creador;
         this.conteoLikes = conteoLikes;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -47,11 +49,24 @@ public class Playlist {
         this.songs = songs;
     }
 
+    public String getCreador() {
+        return creador;
+    }
+
+    public void setCreador(String creador) {
+        this.creador = creador;
+    }
+
     @Override
     public String toString() {
-        return "Playlist" + "\nNombre: " + nombre 
-                + "\nConteo de Likes: " + conteoLikes;
+        return "Playlist" 
+                + "\nNombre de artista: " + nombre 
+                + "\nCreador: " + creador 
+                + "\nConteo de Likes: " + conteoLikes 
+                + "\nCanciones: " + songs;
     }
+
+   
     
     
 }

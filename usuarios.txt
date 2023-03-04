@@ -1,1 +1,4 @@
-pedro|caca|12|Cliente|
+123|123|20|Artista
+123|123|20|Artista
+321|321|12|Cliente
+4321|4321|19|Artista

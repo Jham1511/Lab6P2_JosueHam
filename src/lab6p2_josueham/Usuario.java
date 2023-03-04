@@ -1,5 +1,7 @@
 package lab6p2_josueham;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author skxka
@@ -13,7 +15,14 @@ public class Usuario {
     }
 
     public Usuario(int edad, String username, String password, String tipo) {
-        this.edad = edad;
+        if (edad >= 18 && tipo.equals("Artista")) {
+            this.edad = edad;
+        } else if (edad >= 12 && tipo.equals("Cliente")){
+            this.edad = edad;
+        } else {
+            String strEdad = JOptionPane.showInputDialog(this, "Ingrese una edad valida");
+            this.edad = Integer.parseInt(strEdad);
+        }
         this.username = username;
         this.password = password;
         this.tipo = tipo;
