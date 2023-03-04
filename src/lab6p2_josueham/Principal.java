@@ -81,6 +81,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lb_tituloSong = new javax.swing.JLabel();
         FieldTituloSong = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         DiaClientes = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -402,6 +403,8 @@ public class Principal extends javax.swing.JFrame {
         lb_tituloSong.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         lb_tituloSong.setText("Titulo de la cancion");
 
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout panelCancionesLayout = new javax.swing.GroupLayout(panelCanciones);
         panelCanciones.setLayout(panelCancionesLayout);
         panelCancionesLayout.setHorizontalGroup(
@@ -410,10 +413,16 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelCancionesLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_tituloSong)
-                    .addComponent(jLabel2)
-                    .addComponent(FieldTituloSong, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(369, Short.MAX_VALUE))
+                    .addGroup(panelCancionesLayout.createSequentialGroup()
+                        .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(FieldTituloSong, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelCancionesLayout.createSequentialGroup()
+                        .addComponent(lb_tituloSong)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(155, 155, 155))))
         );
         panelCancionesLayout.setVerticalGroup(
             panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,7 +430,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addGap(52, 52, 52)
-                .addComponent(lb_tituloSong)
+                .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_tituloSong)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(FieldTituloSong, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
@@ -435,6 +446,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PlayList del Usuario");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
@@ -448,6 +460,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 140, 360));
 
         lb_cancionesFav.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        lb_cancionesFav.setForeground(new java.awt.Color(255, 255, 255));
         lb_cancionesFav.setText("Canciones Favoritas");
         jPanel5.add(lb_cancionesFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 20));
 
@@ -584,25 +597,15 @@ public class Principal extends javax.swing.JFrame {
     private void BtnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnIngresarMouseClicked
         String username = FieldUserLogIn.getText();
         String pass = FieldContraLogIn.getText();
-        boolean type = false;
-        for (Usuario t : ap.getListaUsuarios()) {
-            if (t.getTipo().equals("Artista")) {
-                type = true;
-            } else if (t.getTipo().equals("Cliente")) {
-                type = false;
-            }
-        }
+        
         for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
-            if (username.equals(ap.getListaUsuarios().get(i).getUsername())
-                    && pass.equals(ap.getListaUsuarios().get(i).getPassword()) && type == true) {
-                abrir_artistas();
-                System.out.println("Hola artista");
-                break;
-            } else if (username.equals(ap.getListaUsuarios().get(i).getUsername())
-                    && pass.equals(ap.getListaUsuarios().get(i).getPassword()) && type == false) {
-                abrir_oyentes();
-                System.out.println("Hola cliente");
-                break;
+            Usuario user = ap.getListaUsuarios().get(i);
+            if (username.equals(user.getUsername()) 
+                    && pass.equals(user.getPassword())) {
+                if (user.getTipo().equals("Artista"))
+                    abrir_artistas();
+                else if(user.getTipo().equals("Cliente"))
+                    abrir_oyentes();
             }
         }
 //        
@@ -752,6 +755,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
