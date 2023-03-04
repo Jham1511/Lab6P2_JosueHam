@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
 public class Principal extends javax.swing.JFrame {
 
     administrarUsuarios ap = new administrarUsuarios("./usuarios.txt");
-    
+    File archivo = new File("./bitacora.txt");
+
     public Principal() throws IOException {
         initComponents();
         ap.cargarArchivo();
@@ -311,11 +312,6 @@ public class Principal extends javax.swing.JFrame {
                 BtnIngresarMouseClicked(evt);
             }
         });
-        BtnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnIngresarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -376,12 +372,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         jLabel3.setText("Duracion");
-
-        FieldDuracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FieldDuracionActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -563,21 +553,27 @@ public class Principal extends javax.swing.JFrame {
             String password = FieldContra.getText();
             String strEdad = SpinnerEdad.getValue().toString();
             int edad = Integer.parseInt(strEdad);
+            String nomArtista = FieldNomArtista.getText();
             String tipo = "";
+
             if (rbt_artista.isSelected()) {
                 tipo = "Artista";
+
             } else if (rbtn_cliente.isSelected()) {
                 tipo = "Cliente";
+
             }
 
             Usuario u = new Usuario(edad, username, password, tipo);
+
             ap.getListaUsuarios().add(u);
             ap.escribirArchivo();
             ap.getListaUsuarios().add(new Usuario(edad, username, password, tipo));
+            escribirBit();
         } catch (Exception e) {
             e.getMessage();
         }
-        
+
         JOptionPane.showMessageDialog(this, "Usuario agregado exitosamente");
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
@@ -591,32 +587,36 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnTurnActionPerformed
 
     private void BtnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnIngresarMouseClicked
-        String username = FieldContraLogIn.getText();
+        String username = FieldUserLogIn.getText();
         String pass = FieldContraLogIn.getText();
         boolean type = false;
-        
+        for (Usuario t : ap.getListaUsuarios()) {
+            if (t.getTipo().equals("Artista")) {
+                type = true;
+            } else if (t.getTipo().equals("Cliente")) {
+                type = false;
+            }
+        }
         for (int i = 0; i < ap.getListaUsuarios().size(); i++) {
-            if (ap.getListaUsuarios().get(i).getTipo().equals("Artista") && username.equals(ap.getListaUsuarios().get(i).getUsername())) {
+            if (username.equals(ap.getListaUsuarios().get(i).getUsername())
+                    && pass.equals(ap.getListaUsuarios().get(i).getPassword()) && type == true) {
                 abrir_artistas();
-            } else if ("Cliente".equals(ap.getListaUsuarios().get(i).getTipo()) && username.equals(ap.getListaUsuarios().get(i).getUsername())){
+                System.out.println("Hola artista");
+                break;
+            } else if (username.equals(ap.getListaUsuarios().get(i).getUsername())
+                    && pass.equals(ap.getListaUsuarios().get(i).getPassword()) && type == false) {
                 abrir_oyentes();
+                System.out.println("Hola cliente");
+                break;
             }
         }
 //        
 
     }//GEN-LAST:event_BtnIngresarMouseClicked
 
-    private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnIngresarActionPerformed
-
     private void BtnCrearCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearCancionActionPerformed
         abrir_crearSongs();
     }//GEN-LAST:event_BtnCrearCancionActionPerformed
-
-    private void FieldDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FieldDuracionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FieldDuracionActionPerformed
 
     private void BtnCrearLanzamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearLanzamientosActionPerformed
         // TODO add your handling code here:
@@ -683,31 +683,49 @@ public class Principal extends javax.swing.JFrame {
         DiaArtistas.setLocationRelativeTo(this);
         DiaArtistas.setVisible(true);
     }
-    
-    public void abrir_oyentes(){
+
+    public void abrir_oyentes() {
         this.setVisible(false);
         DiaClientes.pack();
         DiaClientes.setLocationRelativeTo(this);
         DiaClientes.setVisible(true);
-        }
-    
-    public void abrir_crearSongs(){
-       DiaArtistas.setVisible(false);
-       DiaCrearCanciones.pack();
-       DiaCrearCanciones.setLocationRelativeTo(this);
-       DiaCrearCanciones.setVisible(true);
     }
-    
-    public DefaultListModel llenarLista (){
+
+    public void abrir_crearSongs() {
+        DiaArtistas.setVisible(false);
+        DiaCrearCanciones.pack();
+        DiaCrearCanciones.setLocationRelativeTo(this);
+        DiaCrearCanciones.setVisible(true);
+    }
+
+    public DefaultListModel llenarLista() {
         DefaultListModel modelito = new DefaultListModel();
-        
+
         for (Usuario u : ap.getListaUsuarios()) {
             if (u instanceof Cliente) {
-               // modelito.addElement(ap.getListaUsuarios().get);
+                // modelito.addElement(ap.getListaUsuarios().get);
             }
         }
-        
+
         return modelito;
+    }
+
+    public void escribirBit() throws IOException {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivo, true);
+            bw = new BufferedWriter(fw);
+            for (Usuario t : ap.getListaUsuarios()) {
+                bw.write(t.getUsername() + "->");
+                bw.write(t.getTipo() + "->");
+                bw.write(new Date().toInstant().toString() + "\n");
+            }
+            bw.flush();
+        } catch (Exception ex) {
+        }
+        bw.close();
+        fw.close();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCrearCancion;

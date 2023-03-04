@@ -1,3 +1,5 @@
-Marco|123|21|Artista
-Marco|123|21|Artista
-Pedro|mango|13|Cliente
+
+Marco|pedo|15|Cliente
+Marco|pedo|15|Cliente
+Marco|pedo|15|Cliente
+Pedro|peda|20|Artista

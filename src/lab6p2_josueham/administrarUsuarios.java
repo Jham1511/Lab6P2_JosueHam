@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -57,7 +58,6 @@ public class administrarUsuarios {
         return "administrarUsuarios{" + "listaUsuarios=" + listaUsuarios + '}';
     }
 
-
     public void escribirArchivo() throws IOException {
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -78,23 +78,23 @@ public class administrarUsuarios {
     }
 
     public void cargarArchivo() throws FileNotFoundException, IOException {
+        try {
+            BufferedReader br
+                    = new BufferedReader(new FileReader("./usuarios.txt"));
 
-        BufferedReader br
-                = new BufferedReader(new FileReader("./usuarios.txt"));
+            String st;
+            while ((st = br.readLine()) != null) {
+                String[] tokens = st.split("\\|");
+                int edad = Integer.parseInt(tokens[2]);
+                for (int i = 0; i < tokens.length; i++) {
+                    System.out.println("[" + tokens[i] + "]");
+                }
+                listaUsuarios.add(new Usuario(edad, tokens[0], tokens[1], tokens[3]));
 
-        String st;
-        while ((st = br.readLine()) != null) {
-            String[] tokens = st.split("\\|");
-            int edad = Integer.parseInt(tokens[2]);
-            for (int i = 0; i < tokens.length; i++) {
-                System.out.println("[" + tokens[i] + "]");
+                System.out.println(st);
             }
-            listaUsuarios.add(new Usuario(edad, tokens[0], tokens[1], tokens[3]));
-            
-            
-            System.out.println(st);
+        } catch (Exception e) {
         }
-
     }
 
 }
