@@ -553,7 +553,6 @@ public class Principal extends javax.swing.JFrame {
             String password = FieldContra.getText();
             String strEdad = SpinnerEdad.getValue().toString();
             int edad = Integer.parseInt(strEdad);
-            String nomArtista = FieldNomArtista.getText();
             String tipo = "";
 
             if (rbt_artista.isSelected()) {
@@ -563,12 +562,8 @@ public class Principal extends javax.swing.JFrame {
                 tipo = "Cliente";
 
             }
-
-            Usuario u = new Usuario(edad, username, password, tipo);
-
-            ap.getListaUsuarios().add(u);
-            ap.escribirArchivo();
             ap.getListaUsuarios().add(new Usuario(edad, username, password, tipo));
+            ap.escribirArchivo();
             escribirBit();
         } catch (Exception e) {
             e.getMessage();
