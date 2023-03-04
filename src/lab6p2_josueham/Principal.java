@@ -20,13 +20,17 @@ import javax.swing.JOptionPane;
  * @author skxka
  */
 public class Principal extends javax.swing.JFrame {
-
+    
+    administrarPlaylists pl = new administrarPlaylists("./playlists.txt");
+    administrarLanzamientos lan = new administrarLanzamientos("./lanzamientos.txt");
+    administrarCanciones can = new administrarCanciones("./canciones.txt");
     administrarUsuarios ap = new administrarUsuarios("./usuarios.txt");
     File archivo = new File("./bitacora.txt");
 
     public Principal() throws IOException {
         initComponents();
         ap.cargarArchivo();
+        can.cargarArchivo1();
         this.setLocationRelativeTo(null);
     }
 
@@ -78,10 +82,13 @@ public class Principal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         FieldDuracion = new javax.swing.JTextField();
+        BtnGuardarCancion = new javax.swing.JButton();
+        BtnAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lb_tituloSong = new javax.swing.JLabel();
         FieldTituloSong = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        FieldReferencia = new javax.swing.JTextField();
         DiaClientes = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -374,6 +381,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         jLabel3.setText("Duracion");
 
+        BtnGuardarCancion.setText("Guardar Cancion");
+        BtnGuardarCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarCancionActionPerformed(evt);
+            }
+        });
+
+        BtnAtras.setText("Atras");
+        BtnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -381,9 +402,16 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnGuardarCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(156, 156, 156))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,8 +419,12 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGuardarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BtnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
@@ -403,7 +435,8 @@ public class Principal extends javax.swing.JFrame {
         lb_tituloSong.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         lb_tituloSong.setText("Titulo de la cancion");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
+        jLabel4.setText("Referencia");
 
         javax.swing.GroupLayout panelCancionesLayout = new javax.swing.GroupLayout(panelCanciones);
         panelCanciones.setLayout(panelCancionesLayout);
@@ -414,14 +447,16 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCancionesLayout.createSequentialGroup()
-                        .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(FieldTituloSong, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelCancionesLayout.createSequentialGroup()
-                        .addComponent(lb_tituloSong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCancionesLayout.createSequentialGroup()
+                        .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FieldTituloSong, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_tituloSong))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                        .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(FieldReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(155, 155, 155))))
         );
         panelCancionesLayout.setVerticalGroup(
@@ -433,9 +468,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_tituloSong)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(FieldTituloSong, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(FieldReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(FieldTituloSong))
+                .addGap(32, 32, 32)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -620,6 +657,26 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnCrearLanzamientosActionPerformed
 
+    private void BtnGuardarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarCancionActionPerformed
+        
+        try {
+        String tituloCan = FieldTituloSong.getText();
+        String duracion = FieldDuracion.getText();
+        String referencia = FieldReferencia.getText();
+        
+        can.getListaCanciones().add(new Cancion(tituloCan, duracion, referencia));
+        can.escribirArchivo();
+        JOptionPane.showMessageDialog(this, "Cancion agregada");
+        } catch (Exception e){
+            
+        } 
+        
+    }//GEN-LAST:event_BtnGuardarCancionActionPerformed
+
+    private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
+        DiaCrearCanciones.setVisible(false);
+    }//GEN-LAST:event_BtnAtrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -726,9 +783,11 @@ public class Principal extends javax.swing.JFrame {
         fw.close();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAtras;
     private javax.swing.JButton BtnCrearCancion;
     private javax.swing.JButton BtnCrearLanzamientos;
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnGuardarCancion;
     private javax.swing.JButton BtnIngresar;
     private javax.swing.JButton BtnIr;
     private javax.swing.JButton BtnRegistrarse;
@@ -744,6 +803,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField FieldContraLogIn;
     private javax.swing.JTextField FieldDuracion;
     private javax.swing.JTextField FieldNomArtista;
+    private javax.swing.JTextField FieldReferencia;
     private javax.swing.JTextField FieldTituloSong;
     private javax.swing.JTextField FieldUserLogIn;
     private javax.swing.JTextField FieldUsername;
